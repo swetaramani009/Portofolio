@@ -1,0 +1,586 @@
+/* CSS Layout Styles Comprehensive Demo */
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.layout-demo {
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+  background: #f5f5f5;
+  min-height: 100vh;
+}
+
+.layout-demo h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+}
+
+/* Layout Selector */
+.layout-selector {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.layout-selector h2 {
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.layout-selector button {
+  margin: 5px;
+  padding: 10px 15px;
+  border: 2px solid #3498db;
+  background: white;
+  color: #3498db;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.layout-selector button:hover {
+  background: #3498db;
+  color: white;
+}
+
+.layout-selector button.active {
+  background: #2980b9;
+  color: white;
+  border-color: #2980b9;
+}
+
+/* Root Container Base Styles */
+.root-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 400px;
+  background: white;
+  border: 3px solid #e74c3c;
+  border-radius: 10px;
+  padding: 10px;
+  position: relative;
+}
+
+.root-container::before {
+  content: "ROOT CONTAINER";
+  position: absolute;
+  top: -15px;
+  left: 20px;
+  background: #e74c3c;
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+/* Component Base Styles */
+.component {
+  padding: 20px;
+  margin: 5px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+}
+
+.header {
+  background: #9b59b6;
+}
+
+.sidebar {
+  background: #34495e;
+}
+
+.main-content {
+  background: #27ae60;
+  flex-direction: column;
+}
+
+.aside {
+  background: #f39c12;
+}
+
+.footer {
+  background: #95a5a6;
+}
+
+/* ===============================
+   1. FLEXBOX LAYOUT
+   =============================== */
+.flexbox-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.flexbox-layout .header {
+  flex: 0 0 auto;
+}
+
+.flexbox-layout .footer {
+  flex: 0 0 auto;
+}
+
+/* Flexbox Middle Section */
+.flexbox-layout .sidebar,
+.flexbox-layout .main-content,
+.flexbox-layout .aside {
+  display: flex;
+  flex: 1;
+}
+
+/* Alternative Flexbox Layout - Horizontal */
+.flexbox-layout.horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.flexbox-layout.horizontal .header,
+.flexbox-layout.horizontal .footer {
+  flex: 1 1 100%;
+}
+
+.flexbox-layout.horizontal .sidebar {
+  flex: 1 1 200px;
+}
+
+.flexbox-layout.horizontal .main-content {
+  flex: 2 1 400px;
+}
+
+.flexbox-layout.horizontal .aside {
+  flex: 1 1 200px;
+}
+
+/* ===============================
+   2. CSS GRID LAYOUT
+   =============================== */
+.grid-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr 150px;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: 
+    "header header header"
+    "sidebar main aside"
+    "footer footer footer";
+  gap: 10px;
+  min-height: 400px;
+}
+
+.grid-layout .header {
+  grid-area: header;
+}
+
+.grid-layout .sidebar {
+  grid-area: sidebar;
+}
+
+.grid-layout .main-content {
+  grid-area: main;
+}
+
+.grid-layout .aside {
+  grid-area: aside;
+}
+
+.grid-layout .footer {
+  grid-area: footer;
+}
+
+/* Grid Alternative - Equal Columns */
+.grid-layout.equal-columns {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-areas: 
+    "header header header header"
+    "sidebar main main aside"
+    "footer footer footer footer";
+}
+
+/* ===============================
+   3. FLOAT LAYOUT (Legacy)
+   =============================== */
+.float-layout {
+  overflow: hidden; /* Clearfix */
+}
+
+.float-layout .header {
+  width: 100%;
+  float: none;
+  clear: both;
+}
+
+.float-layout .sidebar {
+  width: 25%;
+  float: left;
+}
+
+.float-layout .main-content {
+  width: 50%;
+  float: left;
+}
+
+.float-layout .aside {
+  width: 25%;
+  float: right;
+}
+
+.float-layout .footer {
+  width: 100%;
+  float: none;
+  clear: both;
+}
+
+/* ===============================
+   4. POSITION LAYOUT
+   =============================== */
+.position-layout {
+  position: relative;
+  height: 500px;
+}
+
+.position-layout .header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+}
+
+.position-layout .sidebar {
+  position: absolute;
+  top: 90px;
+  left: 0;
+  width: 200px;
+  bottom: 90px;
+}
+
+.position-layout .main-content {
+  position: absolute;
+  top: 90px;
+  left: 210px;
+  right: 160px;
+  bottom: 90px;
+}
+
+.position-layout .aside {
+  position: absolute;
+  top: 90px;
+  right: 0;
+  width: 150px;
+  bottom: 90px;
+}
+
+.position-layout .footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+}
+
+/* ===============================
+   5. DISPLAY LAYOUT
+   =============================== */
+.display-layout {
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 10px;
+}
+
+.display-layout .header,
+.display-layout .footer {
+  display: table-row;
+  width: 100%;
+}
+
+.display-layout .sidebar,
+.display-layout .main-content,
+.display-layout .aside {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.display-layout .sidebar {
+  width: 200px;
+}
+
+.display-layout .aside {
+  width: 150px;
+}
+
+/* ===============================
+   6. MULTI-COLUMN LAYOUT
+   =============================== */
+.columns-layout {
+  column-count: 3;
+  column-gap: 20px;
+  column-rule: 2px solid #bdc3c7;
+}
+
+.columns-layout .component {
+  break-inside: avoid;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.columns-layout .header {
+  column-span: all;
+  margin-bottom: 20px;
+}
+
+.columns-layout .footer {
+  column-span: all;
+  margin-top: 20px;
+}
+
+/* ===============================
+   7. TABLE LAYOUT
+   =============================== */
+.table-layout {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  height: 400px;
+  border-spacing: 10px;
+}
+
+.table-layout .header {
+  display: table-caption;
+  caption-side: top;
+}
+
+.table-layout .footer {
+  display: table-caption;
+  caption-side: bottom;
+}
+
+.table-layout .sidebar,
+.table-layout .main-content,
+.table-layout .aside {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.table-layout .sidebar {
+  width: 25%;
+}
+
+.table-layout .main-content {
+  width: 50%;
+}
+
+.table-layout .aside {
+  width: 25%;
+}
+
+/* ===============================
+   LAYOUT INFORMATION SECTION
+   =============================== */
+.layout-info {
+  margin-top: 40px;
+  padding: 25px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.layout-info h3 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+  font-size: 1.5em;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.layout-info h4 {
+  color: #34495e;
+  margin-bottom: 10px;
+}
+
+.layout-info ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.layout-info li {
+  margin-bottom: 8px;
+  padding: 8px;
+  background: #ecf0f1;
+  border-radius: 4px;
+  border-left: 4px solid #3498db;
+}
+
+.layout-info strong {
+  color: #e74c3c;
+  font-family: 'Courier New', monospace;
+}
+
+/* ===============================
+   RESPONSIVE DESIGN
+   =============================== */
+@media (max-width: 768px) {
+  .root-container {
+    margin: 10px;
+    padding: 5px;
+  }
+  
+  .layout-selector button {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+  }
+  
+  /* Flexbox Mobile */
+  .flexbox-layout {
+    flex-direction: column;
+  }
+  
+  .flexbox-layout .sidebar,
+  .flexbox-layout .main-content,
+  .flexbox-layout .aside {
+    flex: none;
+  }
+  
+  /* Grid Mobile */
+  .grid-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "header"
+      "sidebar"
+      "main"
+      "aside"
+      "footer";
+  }
+  
+  /* Position Mobile */
+  .position-layout .sidebar,
+  .position-layout .main-content,
+  .position-layout .aside {
+    position: static;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  /* Float Mobile */
+  .float-layout .sidebar,
+  .float-layout .main-content,
+  .float-layout .aside {
+    float: none;
+    width: 100%;
+  }
+  
+  /* Columns Mobile */
+  .columns-layout {
+    column-count: 1;
+  }
+}
+
+/* ===============================
+   ADVANCED LAYOUT TECHNIQUES
+   =============================== */
+
+/* Sticky Header */
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Fixed Sidebar */
+.fixed-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* Overlay Layout */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Centering Techniques */
+.center-absolute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-grid {
+  display: grid;
+  place-items: center;
+}
+
+/* Aspect Ratio Container */
+.aspect-ratio {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+}
+
+.aspect-ratio-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Holy Grail Layout with Flexbox */
+.holy-grail {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.holy-grail-header,
+.holy-grail-footer {
+  flex: none;
+}
+
+.holy-grail-body {
+  display: flex;
+  flex: 1;
+}
+
+.holy-grail-sidebar,
+.holy-grail-aside {
+  flex: 0 0 200px;
+}
+
+.holy-grail-main {
+  flex: 1;
+}
